@@ -9,3 +9,11 @@ My addition was to add support for editor and REPL modes of:
 * IELM
 * Jess
 * inferior-jess
+
+How to use:  
+
+    (eval-after-load 'parenface-plus
+      (progn
+        (set-face-foreground 'parenface-paren-face "SteelBlue4")
+        (set-face-foreground 'parenface-bracket-face "SteelBlue4")
+        (set-face-foreground 'parenface-curly-face "SteelBlue4")))
