@@ -1,4 +1,4 @@
-;;; parenface-plus.el --- Provide a face for parens in lispy modes.
+;;; parenface.el --- Provide a face for parens in lispy modes.
 
 ;; Author: Dave Pearson <davep@davep.org>
 ;; Version: 1.2
@@ -15,7 +15,7 @@
 ;; 2014-01-01 add support for [] {} by V Zhao <kaihaosw@gmail.com>
 ;;
 ;; Usage:
-;; (eval-after-load 'parenface-plus
+;; (eval-after-load 'parenface
 ;;   (progn
 ;;     (set-face-foreground 'parenface-paren-face "SteelBlue4")
 ;;     (set-face-foreground 'parenface-bracket-face "SteelBlue4")
@@ -87,6 +87,6 @@
 (add-hook 'arc-mode-hook              (paren-face-add-support arc-font-lock-keywords-2))
 (add-hook 'inferior-arc-mode-hook     (paren-face-add-support arc-font-lock-keywords-2))
 
-(provide 'parenface-plus)
+(provide 'parenface)
 
-;;; parenface-plus.el ends here
+;;; parenface.el ends here
