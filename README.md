@@ -2,7 +2,7 @@ parenface
 =========
 
 Dave Pearson <davep@davep.org> released the excellent parenface package which
-fontifies brackets in Emacs [here] (http://ww.davep.org/emacs/parenface.el).
+fontifies brackets in Emacs [here] (http://www.davep.org/emacs/parenface.el).
 
 Zhao Wei <kaihaosw@gmail.com> added square and curly bracket support.
 
