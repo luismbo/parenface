@@ -3,6 +3,8 @@ parenface
 
 Dave Pearson <davep@davep.org> released the excellent parenface package which
 fontifies brackets in Emacs [here] (http://www.davep.org/emacs/parenface.el).
+Boris Schaefer <boris@uncommon-sense.net> is cited as the source in the
+comp.lang.scheme message <87hf8g9nw5.fsf@qiwi.uncommon-sense.net>.
 
 Zhao Wei <kaihaosw@gmail.com> added square and curly bracket support.
 
