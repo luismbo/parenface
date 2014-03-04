@@ -18,7 +18,7 @@ Supported modes:
 
 How to use:
 
-    (eval-after-load 'parenface-plus
+    (eval-after-load 'parenface
       (progn
         (set-face-foreground 'parenface-paren-face "SteelBlue4")
         (set-face-foreground 'parenface-bracket-face "SteelBlue4")
