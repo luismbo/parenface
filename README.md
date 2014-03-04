@@ -1,5 +1,5 @@
-parenface-plus
-==============
+parenface
+=========
 
 Dave Pearson <davep@davep.org> released the excellent parenface package which
 fontifies parentheses in Lispy modes in Emacs [here] (www.davep.org/emacs/parenface.el).
