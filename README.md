@@ -4,6 +4,8 @@ parenface-plus
 Dave Pearson <davep@davep.org> released the excellent parenface package which
 fontifies parentheses in Lispy modes in Emacs [here] (www.davep.org/emacs/parenface.el).
 
+Zhao Wei added square and squiggly bracket support.
+
 My addition was to add support for editor and REPL modes of:
 * Clojure
 * nREPL
