@@ -6,12 +6,15 @@ fontifies parentheses in Lispy modes in Emacs [here] (www.davep.org/emacs/parenf
 
 Zhao Wei added square and squiggly bracket support.
 
-My addition was to add support for editor and REPL modes of:
+Supported modes:
+
+* Arc (including inferior mode)
 * Clojure
-* nREPL
-* IELM
-* Jess
-* inferior-jess
+* Emacs Lisp (including IELM)
+* JESS (including inferior mode)
+* Lisp (including interactive mode and SLIME)
+* NRepl
+* Scheme (including inferior mode and cmuscheme
 
 How to use:
 
