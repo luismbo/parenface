@@ -1,4 +1,4 @@
 (define-package
-  "parenface-plus"
+  "parenface"
   "1.2"
-  "Provide a face for parens in lispy modes.") 
+  "Provide a face for parens in lispy modes.")
