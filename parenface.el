@@ -12,7 +12,7 @@
 ;; Log:
 ;; Modifications by Grant Rettke <grettke@acm.org>, November 2012 only to add support for editor and REPL modes for:
 ;; Clojure (and nREPL), IELM, Jess and inferior-jess.
-;; 2014-01-01 add support for [] {} by V Zhao <kaihaosw@gmail.com>
+;; 2014-01-01 add support for [] {} by Zhao Wei <kaihaosw@gmail.com>
 ;;
 ;; Usage:
 ;; (eval-after-load 'parenface
@@ -73,6 +73,7 @@
   (defvar scheme-font-lock-keywords-2 nil))
 
 (add-hook 'clojure-mode-hook          (paren-face-add-support clojure-font-lock-keywords))
+(add-hook 'cider-repl-mode-hook       'paren-face-add-keyword)
 (add-hook 'nrepl-mode-hook            'paren-face-add-keyword)
 (add-hook 'emacs-lisp-mode-hook       (paren-face-add-support lisp-font-lock-keywords-2))
 (add-hook 'ielm-mode-hook             'paren-face-add-keyword)
