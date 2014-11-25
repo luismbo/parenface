@@ -4,6 +4,8 @@
 ;; Version: 1.3
 ;; Maintainer: Grant Rettke
 
+;;; Commentary:
+
 ;; Add a paren-face to emacs and add support for it to the various lisp modes.
 ;;
 ;; Based on some code that Boris Schaefer <boris@uncommon-sense.net> posted
@@ -20,6 +22,8 @@
 ;;     (set-face-foreground 'parenface-paren-face "SteelBlue4")
 ;;     (set-face-foreground 'parenface-bracket-face "SteelBlue4")
 ;;     (set-face-foreground 'parenface-curly-face "SteelBlue4")))
+
+;;; Code:
 
 (defvar parenface-paren-face 'parenface-paren-face)
 (defvar parenface-bracket-face 'parenface-bracket-face)
