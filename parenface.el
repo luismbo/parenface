@@ -25,72 +25,83 @@
 
 ;;; Code:
 
-(defvar parenface-paren-face 'parenface-paren-face)
-(defvar parenface-bracket-face 'parenface-bracket-face)
-(defvar parenface-curly-face 'parenface-curly-face)
+(defgroup parenface nil
+  "Faces for parentheses, brackets and curly braces.
+These faces are only enabled if `parenface-mode' is turned on.
+See `global-parenface-mode' for an easy way to do so."
+  :group 'font-lock-extra-types
+  :group 'faces)
 
 (defface parenface-paren-face
-    '((((class color))
-       (:foreground "DimGray")))
-  "Face for displaying a paren."
-  :group 'faces)
+    '((((class color)) (:foreground "DimGray")))
+  "Face for displaying parentheses: ()."
+  :group 'parenface)
 
 (defface parenface-bracket-face
-    '((((class color))
-       (:foreground "DimGray")))
-  "Face for displaying a bracket."
-  :group 'faces)
+    '((((class color)) (:foreground "DimGray")))
+  "Face for displaying a bracket: []."
+  :group 'parenface)
 
 (defface parenface-curly-face
-    '((((class color))
-       (:foreground "DimGray")))
-  "Face for displaying a curly brace."
-  :group 'faces)
+    '((((class color)) (:foreground "DimGray")))
+  "Face for displaying a curly braces: {}."
+  :group 'parenface)
 
-(defun paren-face-add-support (keywords)
-  "Generate a lambda expression for use in a hook."
-  (lambda ()
-    (let* ((re0 "(\\|)")
-           (re1 "\\[\\|]")
-           (re2 "{\\|}")
-           (match0 (assoc re0 (symbol-value keywords)))
-           (match1 (assoc re1 (symbol-value keywords)))
-           (match2 (assoc re2 (symbol-value keywords))))
-      (unless (eq (cdr match0) parenface-paren-face)
-        (set keywords (append (list (cons re0 parenface-paren-face)) (symbol-value keywords))))
-      (unless (eq (cdr match1) parenface-bracket-face)
-        (set keywords (append (list (cons re1 parenface-bracket-face)) (symbol-value keywords))))
-      (unless (eq (cdr match2) parenface-curly-face)
-        (set keywords (append (list (cons re2 parenface-curly-face)) (symbol-value keywords)))))))
+(defcustom parenface-modes
+  '(arc-mode inferior-arc-mode
+    clojure-mode cider-repl-mode nrepl-mode
+    emacs-lisp-mode lisp-interaction-mode ielm-mode
+    jess-mode inferior-jess-mode
+    lisp-mode
+    ;; slime-repl-mode ; XXX: interferes with `slime-repl-prompt-face'.
+    scheme-mode inferior-scheme-mode)
+  "Major modes in which `parenface-mode' should be turned on.
+When `global-parenface-mode' is turned on, the buffer-local mode
+is turned on in all buffers whose major mode is or derives from
+one of the modes listed here."
+  :group 'parenface)
 
-(defun paren-face-add-keyword ()
-  "Adds paren-face support to the mode."
-  (font-lock-add-keywords nil '(("(\\|)" . parenface-paren-face)
-                                ("\\[\\|]" . parenface-bracket-face)
-                                ("{\\|}" . parenface-curly-face))))
+(defcustom parenface-paren-regexp "[()]"
+  "Regular expression to match parentheses."
+  :group 'parenface)
 
-(add-hook 'clojure-mode-hook          (paren-face-add-support 'clojure-font-lock-keywords))
-(add-hook 'cider-repl-mode-hook       'paren-face-add-keyword)
-(add-hook 'nrepl-mode-hook            'paren-face-add-keyword)
-(add-hook 'ielm-mode-hook             'paren-face-add-keyword)
-(add-hook 'inferior-jess-mode-hook    'paren-face-add-keyword)
-(add-hook 'jess-mode-hook             (paren-face-add-support 'jess-font-lock-keywords))
-(add-hook 'scheme-mode-hook           (paren-face-add-support 'scheme-font-lock-keywords-2))
-(add-hook 'inferior-scheme-mode-hook  (paren-face-add-support 'scheme-font-lock-keywords-2))
-(add-hook 'cmuscheme-load-hook        (paren-face-add-support 'scheme-font-lock-keywords-2))
-(add-hook 'arc-mode-hook              (paren-face-add-support 'arc-font-lock-keywords-2))
-(add-hook 'inferior-arc-mode-hook     (paren-face-add-support 'arc-font-lock-keywords-2))
+(defcustom parenface-bracket-regexp "[\\[\\]]"
+  "Regular expression to match brackets."
+  :group 'parenface)
 
-(destructuring-bind (el-keywords cl-keywords)
-    (if (and (>= emacs-major-version 24) (>= emacs-minor-version 4))
-        (list 'lisp-el-font-lock-keywords-2 'lisp-cl-font-lock-keywords-2)
-        (list 'lisp-font-lock-keywords-2    'lisp-font-lock-keywords-2))
-  (add-hook 'emacs-lisp-mode-hook       (paren-face-add-support el-keywords))
-  (add-hook 'lisp-interaction-mode-hook (paren-face-add-support el-keywords))
-  (add-hook 'lisp-mode-hook             (paren-face-add-support cl-keywords)))
+(defcustom parenface-curly-regexp "[{}]"
+  "Regular expression to match curly braces."
+  :group 'parenface)
 
-;; disabled as it interferes with the `slime-repl-prompt-face'.
-;; (add-hook 'slime-repl-mode-hook       'paren-face-add-keyword)
+(defvar parenface-mode-lighter "")
+
+;;;###autoload
+(define-minor-mode parenface-mode
+  "Enable dedicated faces just for parentheses, brackets and
+curly braces."
+  :lighter parenface-mode-lighter
+  (dolist (args `((nil ((,parenface-paren-regexp   0 'parenface-paren-face)))
+                  (nil ((,parenface-bracket-regexp 0 'parenface-bracket-face)))
+                  (nil ((,parenface-curly-regexp   0 'parenface-curly-face)))))
+    (apply (if parenface-mode
+               #'font-lock-add-keywords
+               #'font-lock-remove-keywords)
+           args))
+  (when (called-interactively-p 'any)
+    (font-lock-fontify-buffer)))
+
+;;;###autoload
+(define-globalized-minor-mode global-parenface-mode
+  parenface-mode turn-on-parenface-mode-if-desired
+  :group 'parenface)
+
+(defun turn-on-parenface-mode-if-desired ()
+  (when (apply 'derived-mode-p parenface-modes)
+    (parenface-mode 1)))
+
+;; for backwards-compatibility with how parenface.el was usually set
+;; up by simply loading or requiring it.
+(global-parenface-mode 1)
 
 (provide 'parenface)
 
