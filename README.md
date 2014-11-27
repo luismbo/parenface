@@ -1,28 +1,58 @@
+[![MELPA](http://melpa.org/packages/parenface-badge.svg)](http://melpa.org/#/parenface)
+
 parenface
 =========
 
-Dave Pearson <davep@davep.org> released the excellent parenface package which
-fontifies brackets in Emacs [here] (http://www.davep.org/emacs/parenface.el).
-Boris Schaefer <boris@uncommon-sense.net> is cited as the source in the
-comp.lang.scheme message <87hf8g9nw5.fsf@qiwi.uncommon-sense.net>
-[here](http://www.davep.org/emacs/).
+The intended purpose of this package is to make parentheses less
+visible in Lisp code by dimming them.
 
-Zhao Wei <kaihaosw@gmail.com> added square and curly bracket support.
+Install it via [MELPA][0]:
 
-Supported modes:
+    M-x package-install RET parenface RET
 
-* Arc (including inferior mode)
-* Clojure
-* Emacs Lisp (including IELM)
-* JESS (including inferior mode)
-* Lisp (including interactive mode and SLIME)
-* NRepl
-* Scheme (including inferior mode and cmuscheme
+Enable it in your `.emacs` file:
 
-How to use:
+    (global-parenface-mode)
 
-    (eval-after-load 'parenface
-      (progn
-        (set-face-foreground 'parenface-paren-face "SteelBlue4")
-        (set-face-foreground 'parenface-bracket-face "SteelBlue4")
-        (set-face-foreground 'parenface-curly-face "SteelBlue4")))
+The option `parenface-modes` controls in what buffers the minor mode
+`parenface-mode` is turned on:
+
+  * Arc (including inferior mode)
+  * Clojure
+  * Emacs Lisp (including IELM)
+  * JESS (including inferior mode)
+  * Lisp (including interactive mode and SLIME)
+  * NRepl
+  * Scheme (including inferior mode)
+
+See the `parenface` customization group for more options.
+
+History
+-------
+
+**2000** Boris Schaefer posts a snippet implementing `paren-face` for
+`scheme-mode` on comp.lang.scheme
+([<87hf8g9nw5.fsf@qiwi.uncommon-sense.net>][1]) and later on
+comp.lang.lisp ([<878zto4z38.fsf@qiwi.uncommon-sense.net>][2]).
+
+**2000** Dave Pearson adds support for `lisp-mode` and `emacs-lisp-mode`
+and [posts it to gnu.emacs.sources][3]. This [classical version][4] is
+[available at his website][5].
+
+**2013** Grant Rettke brings parenface to GitHub where he and Zhao Wei
+package it up for ELPA and add support for more modes and different
+kinds of brackets.
+
+**2013** Jonas Bernoulli rewrites parenface using proper Emacs
+interfaces and names it `paren-face`.
+
+**2014** The `paren-face` rewrite is incorporated back into this
+project.
+
+
+[0]: http://melpa.org/#/getting-started
+[1]: https://groups.google.com/d/msg/comp.lang.scheme/Gx197UAEwH0/fBtF-CFKTUQJ
+[2]: https://groups.google.com/d/msg/comp.lang.lisp/Ux5MDiPSt-0/gZIAtkbmm1YJ
+[3]: https://groups.google.com/d/msg/gnu.emacs.sources/gDEb_0CPs8I/aQGZC1-uc6kJ
+[4]: http://www.davep.org/emacs/parenface.el
+[5]: http://www.davep.org/emacs/
