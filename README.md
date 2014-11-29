@@ -31,13 +31,13 @@ History
 -------
 
 **2000** Boris Schaefer posts a snippet implementing `paren-face` for
-`scheme-mode` on comp.lang.scheme
-([<87hf8g9nw5.fsf@qiwi.uncommon-sense.net>][1]) and later on
-comp.lang.lisp ([<878zto4z38.fsf@qiwi.uncommon-sense.net>][2]).
+`scheme-mode` on [comp.lang.scheme][1] and a few days later on
+[comp.lang.lisp][2].
 
-**2000** Dave Pearson adds support for `lisp-mode` and `emacs-lisp-mode`
-and [posts it to gnu.emacs.sources][3]. This [classical version][4] is
-[available at his website][5].
+**2000** Dave Pearson adds support for `lisp-mode` and
+`emacs-lisp-mode` and [posts it to gnu.emacs.sources][3]. This
+[classical version][4] is still [available at his website][5] and
+served us well for more than a decade.
 
 **2013** Grant Rettke brings parenface to GitHub where he and Zhao Wei
 package it up for ELPA and add support for more modes and different
